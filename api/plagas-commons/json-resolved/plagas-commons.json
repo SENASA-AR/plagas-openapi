@@ -62,6 +62,60 @@
           }
         }
       }
+    },
+    "/monitoreadores" : {
+      "get" : {
+        "tags" : [ "commons", "monitoreo" ],
+        "description" : "Retorna todos los monitoreadores disponibles para el usuario\nactualmente logueado.\n",
+        "parameters" : [ {
+          "name" : "token",
+          "in" : "header",
+          "description" : "El token de autenticacion proporcionado.",
+          "required" : true,
+          "type" : "string",
+          "default" : "nil",
+          "format" : "string"
+        }, {
+          "name" : "sign",
+          "in" : "header",
+          "description" : "El sign de autenticacion proporcioando",
+          "required" : true,
+          "type" : "string",
+          "default" : "nil",
+          "format" : "string"
+        }, {
+          "name" : "usuario",
+          "in" : "header",
+          "description" : "El usuario, por ej. aaraujo",
+          "required" : true,
+          "type" : "string",
+          "format" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Se obtuvieron todos los monitoreadores disponibles",
+            "schema" : {
+              "type" : "array",
+              "title" : "Monitoreadores",
+              "items" : {
+                "$ref" : "#/definitions/Monitoreador"
+              }
+            }
+          },
+          "500" : {
+            "description" : "Error al obtener los datos.",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "401" : {
+            "description" : "El usuario no esta autenticado. Token inválido.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorNotAuth"
+            }
+          }
+        }
+      }
     }
   },
   "definitions" : {
