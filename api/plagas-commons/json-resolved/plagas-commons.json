@@ -228,6 +228,23 @@
         }
       },
       "title" : "Monitoreador"
+    },
+    "Coordenada" : {
+      "type" : "object",
+      "required" : [ "latitud", "longitud" ],
+      "properties" : {
+        "latitud" : {
+          "type" : "string"
+        },
+        "longitud" : {
+          "type" : "string"
+        },
+        "altitud" : {
+          "type" : "string",
+          "description" : "ALTITUD MSL, puede ser negativa. opcional"
+        }
+      },
+      "title" : "Coordenada"
     }
   }
 }
