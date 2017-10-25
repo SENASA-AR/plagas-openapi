@@ -229,6 +229,21 @@
       },
       "title" : "Monitoreador"
     },
+    "Especie" : {
+      "type" : "object",
+      "required" : [ "id" ],
+      "properties" : {
+        "id" : {
+          "type" : "number",
+          "minimum" : 0
+        },
+        "nombre" : {
+          "type" : "string",
+          "example" : "Avena|Maiz|Girasol"
+        }
+      },
+      "title" : "Especie"
+    },
     "Coordenada" : {
       "type" : "object",
       "required" : [ "latitud", "longitud" ],
