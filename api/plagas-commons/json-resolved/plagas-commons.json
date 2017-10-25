@@ -214,6 +214,20 @@
         }
       },
       "title" : "Localidad"
+    },
+    "Monitoreador" : {
+      "type" : "object",
+      "required" : [ "id" ],
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "nombre" : {
+          "type" : "string",
+          "example" : "Juan Carlos|Maria Victoria|Ing. Pablo Perez"
+        }
+      },
+      "title" : "Monitoreador"
     }
   }
 }
