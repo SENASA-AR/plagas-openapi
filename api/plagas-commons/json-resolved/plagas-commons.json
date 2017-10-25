@@ -1,0 +1,165 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Definiciones comunes para Plagas.",
+    "version" : "1.0.0",
+    "title" : "Plagas Commons"
+  },
+  "host" : "virtserver.swaggerhub.com",
+  "basePath" : "/SENASA/Plagas-Commons/1.0.0",
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/provinciasPartidosLocalidades" : {
+      "get" : {
+        "tags" : [ "commons", "provincias" ],
+        "description" : "Retorna todas las provincias de argentina en JSON\ncon la clave #provincias. La provincia contiene una id\ny un nombre\n",
+        "parameters" : [ {
+          "name" : "token",
+          "in" : "header",
+          "description" : "El token de autenticacion proporcionado.",
+          "required" : true,
+          "type" : "string",
+          "default" : "nil",
+          "format" : "string"
+        }, {
+          "name" : "sign",
+          "in" : "header",
+          "description" : "El sign de autenticacion proporcioando",
+          "required" : true,
+          "type" : "string",
+          "default" : "nil",
+          "format" : "string"
+        }, {
+          "name" : "usuario",
+          "in" : "header",
+          "description" : "El usuario, por ej. aaraujo",
+          "required" : true,
+          "type" : "string",
+          "format" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Se obtuvo la lista de provincias",
+            "schema" : {
+              "type" : "array",
+              "title" : "Provincias",
+              "items" : {
+                "$ref" : "#/definitions/Provincia"
+              }
+            }
+          },
+          "500" : {
+            "description" : "Error al obtener los datos.",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          },
+          "401" : {
+            "description" : "El usuario no esta autenticado. Token inválido.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorNotAuth"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Success" : {
+      "properties" : {
+        "message" : {
+          "type" : "string",
+          "example" : "OK",
+          "default" : "OK"
+        }
+      },
+      "title" : "Mensaje de exito"
+    },
+    "PostSuccessful" : {
+      "title" : "PostSuccesful",
+      "allOf" : [ {
+        "$ref" : "#/definitions/Success"
+      }, {
+        "properties" : {
+          "reference" : {
+            "type" : "string",
+            "example" : "AB123AB"
+          }
+        }
+      }, { } ]
+    },
+    "Error" : {
+      "properties" : {
+        "message" : {
+          "type" : "string",
+          "example" : "Ha ocurrido un error al guardar los datos",
+          "default" : "Error"
+        }
+      },
+      "title" : "Mensaje de error"
+    },
+    "ErrorNotAuth" : {
+      "properties" : {
+        "message" : {
+          "type" : "string",
+          "default" : "El usuario no se encuentra autenticado."
+        }
+      },
+      "title" : "Mensaje de No Autenticado"
+    },
+    "Provincia" : {
+      "type" : "object",
+      "required" : [ "id", "nombre", "partidos" ],
+      "properties" : {
+        "id" : {
+          "type" : "number",
+          "minimum" : 0
+        },
+        "nombre" : {
+          "type" : "string"
+        },
+        "partidos" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Partido"
+          }
+        }
+      },
+      "title" : "Provincia"
+    },
+    "Partido" : {
+      "type" : "object",
+      "required" : [ "id", "localidades", "nombre" ],
+      "properties" : {
+        "id" : {
+          "type" : "number",
+          "minimum" : 0
+        },
+        "nombre" : {
+          "type" : "string"
+        },
+        "localidades" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Localidad"
+          }
+        }
+      },
+      "title" : "Partido"
+    },
+    "Localidad" : {
+      "type" : "object",
+      "required" : [ "id", "nombre" ],
+      "properties" : {
+        "id" : {
+          "type" : "number",
+          "minimum" : 0
+        },
+        "nombre" : {
+          "type" : "string"
+        }
+      },
+      "title" : "Localidad"
+    }
+  }
+}
