@@ -6,7 +6,7 @@
     "title" : "Plagas Commons"
   },
   "paths" : {
-    "/provinciasPartidosLocalidades" : {
+    "/commons/provinciasPartidosLocalidades" : {
       "get" : {
         "tags" : [ "commons", "provincias" ],
         "description" : "Retorna todas las provincias de argentina en JSON\ncon la clave #provincias. La provincia contiene una id\ny un nombre\n",
@@ -60,7 +60,7 @@
         }
       }
     },
-    "/monitoreadores" : {
+    "/commons/monitoreadores" : {
       "get" : {
         "tags" : [ "commons", "monitoreo" ],
         "description" : "Retorna todos los monitoreadores disponibles para el usuario\nactualmente logueado.\n",
