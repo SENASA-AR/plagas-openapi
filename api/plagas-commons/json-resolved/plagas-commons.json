@@ -5,9 +5,6 @@
     "version" : "1.0.0",
     "title" : "Plagas Commons"
   },
-  "host" : "virtserver.swaggerhub.com",
-  "basePath" : "/SENASA/Plagas-Commons/1.0.0",
-  "schemes" : [ "https" ],
   "paths" : {
     "/provinciasPartidosLocalidades" : {
       "get" : {
@@ -119,48 +116,6 @@
     }
   },
   "definitions" : {
-    "Success" : {
-      "properties" : {
-        "message" : {
-          "type" : "string",
-          "example" : "OK",
-          "default" : "OK"
-        }
-      },
-      "title" : "Mensaje de exito"
-    },
-    "PostSuccessful" : {
-      "title" : "PostSuccesful",
-      "allOf" : [ {
-        "$ref" : "#/definitions/Success"
-      }, {
-        "properties" : {
-          "reference" : {
-            "type" : "string",
-            "example" : "AB123AB"
-          }
-        }
-      }, { } ]
-    },
-    "Error" : {
-      "properties" : {
-        "message" : {
-          "type" : "string",
-          "example" : "Ha ocurrido un error al guardar los datos",
-          "default" : "Error"
-        }
-      },
-      "title" : "Mensaje de error"
-    },
-    "ErrorNotAuth" : {
-      "properties" : {
-        "message" : {
-          "type" : "string",
-          "default" : "El usuario no se encuentra autenticado."
-        }
-      },
-      "title" : "Mensaje de No Autenticado"
-    },
     "Provincia" : {
       "type" : "object",
       "required" : [ "id", "nombre", "partidos" ],
@@ -215,6 +170,25 @@
       },
       "title" : "Localidad"
     },
+    "Error" : {
+      "properties" : {
+        "message" : {
+          "type" : "string",
+          "example" : "Ha ocurrido un error al guardar los datos",
+          "default" : "Error"
+        }
+      },
+      "title" : "Mensaje de error"
+    },
+    "ErrorNotAuth" : {
+      "properties" : {
+        "message" : {
+          "type" : "string",
+          "default" : "El usuario no se encuentra autenticado."
+        }
+      },
+      "title" : "Mensaje de No Autenticado"
+    },
     "Monitoreador" : {
       "type" : "object",
       "required" : [ "id" ],
@@ -228,38 +202,6 @@
         }
       },
       "title" : "Monitoreador"
-    },
-    "Especie" : {
-      "type" : "object",
-      "required" : [ "id" ],
-      "properties" : {
-        "id" : {
-          "type" : "number",
-          "minimum" : 0
-        },
-        "nombre" : {
-          "type" : "string",
-          "example" : "Avena|Maiz|Girasol"
-        }
-      },
-      "title" : "Especie"
-    },
-    "Coordenada" : {
-      "type" : "object",
-      "required" : [ "latitud", "longitud" ],
-      "properties" : {
-        "latitud" : {
-          "type" : "string"
-        },
-        "longitud" : {
-          "type" : "string"
-        },
-        "altitud" : {
-          "type" : "string",
-          "description" : "ALTITUD MSL, puede ser negativa. opcional"
-        }
-      },
-      "title" : "Coordenada"
     }
   }
 }
