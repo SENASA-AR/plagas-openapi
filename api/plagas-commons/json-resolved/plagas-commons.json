@@ -10,30 +10,7 @@
       "get" : {
         "tags" : [ "commons", "provincias" ],
         "description" : "Retorna todas las provincias de argentina en JSON\ncon la clave #provincias. La provincia contiene una id\ny un nombre\n",
-        "parameters" : [ {
-          "name" : "token",
-          "in" : "header",
-          "description" : "El token de autenticacion proporcionado.",
-          "required" : true,
-          "type" : "string",
-          "default" : "nil",
-          "format" : "string"
-        }, {
-          "name" : "sign",
-          "in" : "header",
-          "description" : "El sign de autenticacion proporcioando",
-          "required" : true,
-          "type" : "string",
-          "default" : "nil",
-          "format" : "string"
-        }, {
-          "name" : "usuario",
-          "in" : "header",
-          "description" : "El usuario, por ej. aaraujo",
-          "required" : true,
-          "type" : "string",
-          "format" : "string"
-        } ],
+        "parameters" : [ ],
         "responses" : {
           "200" : {
             "description" : "Se obtuvo la lista de provincias",
@@ -50,11 +27,30 @@
             "schema" : {
               "$ref" : "#/definitions/Error"
             }
-          },
-          "401" : {
-            "description" : "El usuario no esta autenticado. Token inválido.",
+          }
+        }
+      }
+    },
+    "/commons/paises" : {
+      "get" : {
+        "tags" : [ "commons" ],
+        "description" : "Retorna todos los paises disponibles en RU.",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Se obtuvo la lista de provincias",
             "schema" : {
-              "$ref" : "#/definitions/ErrorNotAuth"
+              "type" : "array",
+              "title" : "Provincias",
+              "items" : {
+                "$ref" : "#/definitions/Pais"
+              }
+            }
+          },
+          "500" : {
+            "description" : "Error al obtener los datos.",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
             }
           }
         }
@@ -180,14 +176,16 @@
       },
       "title" : "Mensaje de error"
     },
-    "ErrorNotAuth" : {
+    "Pais" : {
+      "type" : "object",
       "properties" : {
-        "message" : {
-          "type" : "string",
-          "default" : "El usuario no se encuentra autenticado."
+        "id" : {
+          "type" : "integer"
+        },
+        "descripcion" : {
+          "type" : "string"
         }
-      },
-      "title" : "Mensaje de No Autenticado"
+      }
     },
     "Monitoreador" : {
       "type" : "object",
@@ -202,6 +200,15 @@
         }
       },
       "title" : "Monitoreador"
+    },
+    "ErrorNotAuth" : {
+      "properties" : {
+        "message" : {
+          "type" : "string",
+          "default" : "El usuario no se encuentra autenticado."
+        }
+      },
+      "title" : "Mensaje de No Autenticado"
     }
   }
 }
